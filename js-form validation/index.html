@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION FORM</title>
+</head>
+<style>
+    body {
+        margin-top: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form {
+        background-color: white;
+        padding: 40px;
+        height: 360px;
+    }
+    
+    .section {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    input {
+        padding: 10px;
+    }
+    
+    button {
+        margin-top: 20px;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <form id="form">
+        <div class="section" id="s1">
+            <h2>Registration Form</h2>
+            <label>Name:</label>
+            <input type="text" placeholder="Enter name" id="name" required>
+            <label>Email:</label>
+            <input type="email" min="0" placeholder="Enter email" id="email" required>
+            <label>Website:</label>
+            <input type="url" placeholder="www.google.com" id="url" required>
+            <label>Message:</label>
+            <input type="text" id="msg" required>
+            <button type="button" onclick="validate1()">Submit</button>
+        </div>
+    </form>
+    <script>
+        function validate1() {
+            var name = document.getElementById("name").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var url = document.getElementById("url").value.trim();
+            var msg = document.getElementById("msg").value.trim();
+
+            var nameRegex = /^[A-Za-z\s]+$/;
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[a-z]{2,6}([\/\w\-.]*)*\/?$/i;
+
+            if (!name || !email || !url || !msg) {
+                alert("Please fill in all the fields.");
+                return;
+            }
+            if (!nameRegex.test(name)) {
+                alert("Only letters and spaces are allowed in the name.");
+                return;
+            }
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+            if (!urlRegex.test(url)) {
+                alert("Please enter a valid website URL.");
+                return;
+            }
+            alert("Form submitted successfully!");
+        }
+    </script>
+</body>
+
+</html>
